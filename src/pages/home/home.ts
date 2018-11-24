@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, DateTime } from 'ionic-angular';
 import { Chart } from 'chart.js';
-import { EletrodomesticoServiceProvider } from './../../providers/eletrodomestico-service/eletrodomestico-service';
+import { IonicPage, NavController } from 'ionic-angular';
 import { Usuario } from '../../models/usuario';
-import { JsonReturn } from './../../models/jsonReturn';
 import { SessionProvider } from './../../providers/session/session';
 
 
@@ -44,8 +42,6 @@ export class HomePage {
 
   constructor(
       public navCtrl: NavController,
-      public eletrodomesticoService: EletrodomesticoServiceProvider,
-      public loadingCtrl: LoadingController,
       public session: SessionProvider,
 
     ) {
@@ -53,154 +49,43 @@ export class HomePage {
         this.myYear = "2018";
   }
 
-  refresh(){
-        
-       this.eletrodomesticoService.getMaioresConsumidores(this.usuarioLogado).subscribe((object : JsonReturn)=>{
-        this.pieChart = new Chart(this.pieCanvas.nativeElement, {
-
-            type: 'pie',
-            data: {
-                labels: object.data.labels,
-                datasets: [{
-                 // labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                    data: object.data.gastos, // DADOS = DOUBLE KWH
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56",
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ]
-                }]
-            }
-    
-        });
-      });
-
-      this.eletrodomesticoService.consumoMensal(this.usuarioLogado, this.myDate.substr(5, 6), this.myDate.substr(0, 3)).subscribe((object : JsonReturn)=>{
-        this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-
-            type: 'line',
-            data: {
-                labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-                  16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
-                datasets: [
-                    {
-                        label: "Consumo diário",
-                        fontSize: 6,
-                        fill: false,
-                        lineTension: 0,
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(75,192,192,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: object.data, //DADOS = KWH DIARIOS
-                        spanGaps: false,
-                    }
-                    
-                ]
-            },
-            options: {
-              labels:{
-                  fontSize:6
-              }
-          }
-        });
-      });
-
-      this.eletrodomesticoService.consumoAnual(this.usuarioLogado, this.myYear).subscribe((object : JsonReturn)=>{
-        this.barChart = new Chart(this.barCanvas.nativeElement, {
-
-            type: 'bar',
-            data: {
-                labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
-                datasets: [{
-                    label: 'kW',
-                    data: object.data, // DADOS RECEBIDOS DO SERVIDOR DOUBLE KW/H MENSAIS
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-  
-        });
-      });
-
-      
-      this.eletrodomesticoService.valorConta(this.usuarioLogado).subscribe((object : JsonReturn)=>{
-      this.barContasChart = new Chart(this.barContas.nativeElement, {
-
-        type: 'horizontalBar',
+  refresh(){ 
+    this.barChart = new Chart(this.barCanvas.nativeElement, {
+        type: 'bar',
         data: {
-            labels: ["Verde", "Amarelo", "Vermelho"],
+            labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
             datasets: [{
-                label: 'Preço',
-                data: object.data, // DADOS RECEBIDOS DO SERVIDOR DOUBLE KW/H MENSAIS
+                label: 'Consumo Mensal',
+                fill: false,
+                data: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], // DADOS RECEBIDOS DO SERVIDOR DOUBLE KW/H MENSAIS
                 backgroundColor: [
-                    'rgba(68, 156, 45, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
                 ],
                 borderColor: [
-                    'rgba(68, 156, 45, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',    
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 1
             }]
@@ -213,11 +98,12 @@ export class HomePage {
                     }
                 }]
             }
-        }
+        },
+        responsive: true
 
     });
-  });
 }
+
   ionViewDidEnter(){
     this.refresh();
 }

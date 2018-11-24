@@ -1,4 +1,3 @@
-import { TabsPage } from './../tabs/tabs';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
