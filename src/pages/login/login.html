@@ -1,0 +1,32 @@
+<ion-content class="login-content">
+  <ion-row center class="logo-row">
+    <ion-col center>
+      <ion-img id="logo" src="assets/imgs/lampada.png"></ion-img>
+    </ion-col>
+  </ion-row>
+
+  <div class="login-box">
+    <ng-container *ngIf="loginForm">
+    <form [formGroup]="loginForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>            
+            <ion-item>
+              <ion-input formControlName="username" type="text" [(ngModel)]="propUsername" placeholder="Email" name="email"   autocapitalize="off" required></ion-input>
+            </ion-item>            
+            <ion-item>
+              <ion-input formControlName="password" type="password" [(ngModel)]="propPassword" placeholder="Senha" name="senha" required></ion-input>
+            </ion-item>            
+          </ion-list>
+        </ion-col>
+      </ion-row>      
+      <ion-row>
+        <ion-col class="signup-col">
+          <button class="entrarBtn" ion-button class="submit-btn" (click)="onClickEntrar()"full type="submit" >Entrar</button>
+          <button class="register-btn" ion-button class="register-btn" (click)="onClickNovaConta()" block clear >Criar nova conta</button>
+        </ion-col>
+      </ion-row>      
+    </form>
+    </ng-container>
+  </div>
+</ion-content>

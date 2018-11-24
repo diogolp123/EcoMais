@@ -1,0 +1,63 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+   <ion-title>Principal</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+          Consumo diário
+        </ion-card-header>
+        <ion-item>
+            <ion-label>Data</ion-label>
+            <ion-datetime displayFormat="MMMM/YYYY" [(ngModel)]="myDate" placeholder="January/2000" pickerFormat="MM YYYY"  min="2000-01-01" (ionChange)="refresh()"></ion-datetime>    
+        </ion-item>
+        <ion-card-content>
+          <canvas #lineCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+      
+    <ion-card>
+      <ion-card-header>
+        Consumo Mensal
+      </ion-card-header>
+      <ion-item>
+          <ion-label>Ano</ion-label>
+          <ion-datetime displayFormat="YYYY" [(ngModel)]="myYear" placeholder="2000" min="2000" (ionChange)="refresh()"></ion-datetime>
+      </ion-item>
+      <ion-card-content>
+        <canvas #barCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Maiores consumidores anual
+      </ion-card-header>
+      <ion-item>     
+      </ion-item>
+      <ion-card-content>
+        <canvas #pieCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Conta
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barContas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+</ion-content>
