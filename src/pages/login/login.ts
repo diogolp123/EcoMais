@@ -6,7 +6,6 @@ import { JsonAccessToken } from '../../models/jsonAcessToken';
 import { AccessToken } from '../../models/token';
 import { Usuario } from '../../models/usuario';
 import { SessionProvider } from '../../providers/session/session';
-import { JsonReturn } from './../../models/jsonReturn';
 import { Credenciais } from './../../models/login';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { CadastroPage } from './../cadastro/cadastro';
@@ -63,31 +62,17 @@ export class LoginPage {
     this.authServiceProvider.authorize(c).subscribe((response: JsonAccessToken) => {
         let token = Object.assign(new AccessToken, response);
         this.session.token(token);
-        this.authServiceProvider.autentication(c, token).subscribe((response: JsonReturn) => {
-          if(response.status === "SUCESSO"){
-            //Login correto
-            let usuario = Object.assign(new Usuario, response.data);
-            this.session.create(usuario);
+        this.authServiceProvider.autentication(c, token).subscribe((response: Usuario) => {
+            this.session.create(response);
             loading.dismiss();
             let alert = this.alertCtrl.create({
-              title: 'Bem Vindo '+response.data.nome+' !!!',
-              subTitle: response.message.toString(),
+              title: 'Bem Vindo !!!',
+              subTitle: response.nome,
               buttons: ['OK']
             });
             alert.present();
             this.navCtrl.setRoot(TabsPage);
             this.navCtrl.push(TabsPage);
-          }
-          else{
-            //Tratamento de erro
-            loading.dismiss();
-            let alert = this.alertCtrl.create({
-              title: 'Aceite seu destino!!',
-              subTitle: response.message.toString(),
-              buttons: ['OK']
-            });
-            alert.present();
-          }
         });
     });
 
