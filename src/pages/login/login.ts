@@ -59,24 +59,33 @@ export class LoginPage {
     });
     loading.present();
 
-    this.authServiceProvider.authorize(c).subscribe((response: JsonAccessToken) => {
-        let token = Object.assign(new AccessToken, response);
-        this.session.token(token);
-        this.authServiceProvider.autentication(c, token).subscribe((response: Usuario) => {
-            this.session.create(response);
-            loading.dismiss();
-            let alert = this.alertCtrl.create({
-              title: 'Bem Vindo !!!',
-              subTitle: response.nome,
-              buttons: ['OK']
-            });
-            alert.present();
-            this.navCtrl.setRoot(TabsPage);
-            this.navCtrl.push(TabsPage);
+      this.authServiceProvider.authorize(c).subscribe((response: JsonAccessToken) => {
+          let token = Object.assign(new AccessToken, response);
+          this.session.token(token);
+          this.authServiceProvider.autentication(c, token).subscribe((response: Usuario) => {
+              this.session.create(response);
+              loading.dismiss();
+              let alert = this.alertCtrl.create({
+                title: 'Bem Vindo.',
+                subTitle: response.nome,
+                buttons: ['OK']
+              });
+              alert.present();
+              this.navCtrl.setRoot(TabsPage);
+              this.navCtrl.push(TabsPage);
+          });
+      },
+      err => {
+        let alert = this.alertCtrl.create({
+          title: 'Erro',
+          subTitle: "Usuário ou Senha Incorretos.",
+          buttons: ['OK']
         });
-    });
-
-  }
+        loading.dismiss();
+        alert.present();
+      }
+    );
+  };
 
   onClickNovaConta(){
     //Redireciona para a tela de cadastro.
