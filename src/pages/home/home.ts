@@ -57,7 +57,6 @@ export class HomePage {
             "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
             datasets: [{
                 label: 'Consumo Mensal',
-                fill: false,
                 data: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], // DADOS RECEBIDOS DO SERVIDOR DOUBLE KW/H MENSAIS
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -92,15 +91,19 @@ export class HomePage {
         },
         options: {
             scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false,
+                        fontSize: 11
+                    }
+                }],
                 yAxes: [{
                     ticks: {
                         beginAtZero:true
                     }
                 }]
             }
-        },
-        responsive: true
-
+        }
     });
 }
 
