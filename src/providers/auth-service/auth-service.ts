@@ -1,11 +1,12 @@
-import { JsonReturn } from './../../models/jsonReturn';
-import { API_ENDPOINT } from './../../utils/constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Credenciais } from '../../models/login';
+
 import { JsonAccessToken } from '../../models/jsonAcessToken';
+import { Credenciais } from '../../models/login';
 import { AccessToken } from '../../models/token';
+import { Usuario } from '../../models/usuario';
+import { API_ENDPOINT } from './../../utils/constants';
 
 
 /*
@@ -33,7 +34,7 @@ export class AuthServiceProvider {
       return this.http.post<JsonAccessToken>(API_ENDPOINT+"/users/auth/sign_in", parametros, options);
   }
 
-  autentication(credentials: Credenciais, acess_token: AccessToken): Observable<JsonReturn>{
+  autentication(credentials: Credenciais, acess_token: AccessToken): Observable<Usuario>{
     var headers = new HttpHeaders();
 
     headers = headers.set('Authorization', 'bearer ' + acess_token.access_token);
@@ -42,7 +43,7 @@ export class AuthServiceProvider {
     
     let url = API_ENDPOINT+"api/usuario/" + acess_token.uid;
 
-      return this.http.get<JsonReturn>(url, options);
+      return this.http.get<Usuario>(url, options);
   }
 
 }
