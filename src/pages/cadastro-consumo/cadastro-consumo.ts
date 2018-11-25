@@ -30,6 +30,8 @@ export class CadastroConsumoPage {
   token: AccessToken;
   ano_mes: String;
 
+  tipo: String = "Gestor"
+
   constructor(
     public navCtrl: NavController, 
     public formBuilder: FormBuilder,

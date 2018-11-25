@@ -15,19 +15,14 @@
 
 <ion-content padding>
 
-    <button clear large ion-button full ion-button icon-left (click)="onClickEdit()">
+      <button *ngIf="tipo == 'Gestor'" clear large ion-button full ion-button icon-left (click)="onClickEdit()">
         <ion-icon class="iconConfig" ios="ios-contact" md="md-contact"></ion-icon>
-        Editar Perfil
+        Criar Usuário
       </button>
 
     <button clear large ion-button full ion-button icon-left (click)="onClickLogout()">
         <ion-icon class="iconConfig" ios="ios-log-out" md="md-log-out"></ion-icon>  
          Log out
       </button> 
-
-    <button clear large ion-button full ion-button icon-left (click)="onClickAbout()">
-        <ion-icon class="iconConfig" ios="ios-paper" md="md-paper"></ion-icon>
-        Sobre 
-      </button>
 
 </ion-content>

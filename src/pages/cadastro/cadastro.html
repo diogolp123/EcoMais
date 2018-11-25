@@ -47,13 +47,17 @@
                 <ion-input formControlName="nascimento" type="text" name="nascimento" placeholder="Data de Nascimento" [brmasker]="{mask:'00/00/0000', len:10, type:'num'}"></ion-input>
               </ion-item>
               <ion-item>
-                <ion-label color="primary" stacked>Quantidade de pessoas</ion-label>
+                <ion-label color="primary" stacked>Quantidade</ion-label>
               <ion-input formControlName="qtdpessoas" type="text" name="qtdpessoas" placeholder="Quantidade de pessoas" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label color="primary" stacked>Tempo de permanência</ion-label>
+              <ion-label color="primary" stacked>Tempo</ion-label>
             <ion-input formControlName="permanencia" type="text" name="permanencia" placeholder="Tempo de permanência" required></ion-input>
           </ion-item>
+          <ion-item>
+            <ion-label color="primary" stacked>Meta</ion-label>
+          <ion-input formControlName="meta" type="text" name="meta" placeholder="Meta de consumo" required></ion-input>
+        </ion-item>
               <ion-item>
                 <ion-label color="primary" stacked>Sexo</ion-label>
                 <ion-select formControlName="sexo">

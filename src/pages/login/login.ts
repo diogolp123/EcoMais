@@ -88,9 +88,4 @@ export class LoginPage {
     );
   };
 
-  onClickNovaConta(){
-    //Redireciona para a tela de cadastro.
-    this.navCtrl.push(CadastroPage, { "isEdit":false});
-  }
-
 }
