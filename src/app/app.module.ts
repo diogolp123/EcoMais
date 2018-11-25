@@ -1,43 +1,37 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { BodyTextChatComponent } from './../components/body-text-chat/body-text-chat';
-import { TextChatComponent } from './../components/text-chat/text-chat';
 import { IonicStorageModule } from '@ionic/storage';
-import { Camera } from '@ionic-native/camera'
-import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
-//import { Keyboard } from '@ionic-native/keyboard';
+import { BrMaskerModule } from 'brmasker-ionic-3';
+import { AlertController, IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-
-import { MyApp } from './app.component';
+import { CadastroConsumoPage } from '../pages/cadastro-consumo/cadastro-consumo';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { CallChatProvider } from '../providers/call-chat/call-chat';
+import { CameraProvider } from '../providers/camera/camera';
+import { ContextChatProvider } from '../providers/context-chat/context-chat';
+import { EletrodomesticoServiceProvider } from '../providers/eletrodomestico-service/eletrodomestico-service';
+import { SaveDataProvider } from '../providers/save-data/save-data';
+import { SessionProvider } from '../providers/session/session';
+import { SingUpServiceProvider } from '../providers/sing-up-service/sing-up-service';
+import { BodyTextChatComponent } from './../components/body-text-chat/body-text-chat';
+import { TextChatComponent } from './../components/text-chat/text-chat';
+import { AboutPage } from './../pages/about/about';
+import { CadastroEletrodomesticoPage } from './../pages/cadastro-eletrodomestico/cadastro-eletrodomestico';
 import { CadastroPage } from './../pages/cadastro/cadastro';
 import { ChatSparkPage } from './../pages/chat-spark/chat-spark';
 import { ConfigPage } from './../pages/config/config';
 import { TabsPage } from './../pages/tabs/tabs';
-import { ListaEletrodomesticosPage } from './../pages/lista-eletrodomesticos/lista-eletrodomesticos';
-import { CadastroEletrodomesticoPage } from './../pages/cadastro-eletrodomestico/cadastro-eletrodomestico';
-import { AboutPage } from './../pages/about/about';
+import { MyApp } from './app.component';
 
-
-import { BrMaskerModule } from 'brmasker-ionic-3';
-import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-import { ContextChatProvider } from '../providers/context-chat/context-chat';
-import { CallChatProvider } from '../providers/call-chat/call-chat';
-import { AlertController } from 'ionic-angular';
-import { SaveDataProvider } from '../providers/save-data/save-data';
-import { Http, HttpModule } from '@angular/http';
-import { CameraProvider } from '../providers/camera/camera';
-import { EletrodomesticoServiceProvider } from '../providers/eletrodomestico-service/eletrodomestico-service';
-import { SessionProvider } from '../providers/session/session';
-import { SingUpServiceProvider } from '../providers/sing-up-service/sing-up-service';
-
-
-
+//import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -45,9 +39,9 @@ import { SingUpServiceProvider } from '../providers/sing-up-service/sing-up-serv
     HomePage,
     LoginPage,
     CadastroPage,
+    CadastroConsumoPage,
     ConfigPage,
     CadastroEletrodomesticoPage,
-    ListaEletrodomesticosPage,
     ChatSparkPage,
     AboutPage,
     BodyTextChatComponent,
@@ -76,7 +70,8 @@ import { SingUpServiceProvider } from '../providers/sing-up-service/sing-up-serv
     LoginPage,
     CadastroPage,
     CadastroEletrodomesticoPage,
-    ListaEletrodomesticosPage,
+    CadastroConsumoPage,
+    CadastroPage,
     TabsPage,
     ChatSparkPage,
     ConfigPage,
@@ -102,9 +97,6 @@ import { SingUpServiceProvider } from '../providers/sing-up-service/sing-up-serv
     EletrodomesticoServiceProvider,
     SessionProvider,
     SingUpServiceProvider
-    
-    
-
   ]
 })
 export class AppModule {}

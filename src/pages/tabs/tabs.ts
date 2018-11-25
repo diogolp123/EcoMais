@@ -1,10 +1,9 @@
-import { ChatSparkPage } from './../chat-spark/chat-spark';
-import { ListaEletrodomesticosPage } from './../lista-eletrodomesticos/lista-eletrodomesticos';
-import { NavController } from 'ionic-angular';
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
-import { HomePage } from './../home/home';
+import { CadastroConsumoPage } from '../cadastro-consumo/cadastro-consumo';
 import { ConfigPage } from '../config/config';
+import { HomePage } from './../home/home';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -12,9 +11,8 @@ import { ConfigPage } from '../config/config';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = ListaEletrodomesticosPage;
+  tab2Root = CadastroConsumoPage;
   tab3Root = ConfigPage;
-  tab4Root = ChatSparkPage;
 
   constructor(public navCtrl: NavController) {
     

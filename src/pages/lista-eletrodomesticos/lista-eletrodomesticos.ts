@@ -33,6 +33,7 @@ export class ListaEletrodomesticosPage {
   ) { }
 
   refresh(){
+<<<<<<< HEAD
     let loading = this.loadingCtrl.create({
       content: 'Aguarde...'
     });
@@ -42,16 +43,11 @@ export class ListaEletrodomesticosPage {
       this.listaEletrodomesticos = object.data;
       loading.dismiss();
     });
+=======
+>>>>>>> b7be8ad5c5bfd7424feca5b774927c714d50fb4d
   }
 
   ionViewDidLoad() {
-    
-    console.log('ionViewDidLoad ListaEletrodomesticosPage');
-    this.session.get()
-      .then(res => {
-        this.usuarioLogado = Object.assign(new Usuario, res);
-        this.refresh();
-    });    
   }
 
   onClickAdd(){
