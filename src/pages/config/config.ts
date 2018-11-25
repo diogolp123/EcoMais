@@ -22,6 +22,8 @@ export class ConfigPage {
 
   usuarioLogado: Usuario;
 
+  tipo: String = "Gestor"
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -38,17 +40,14 @@ export class ConfigPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfigPage');
   }
-  
-  onClickAbout(){
-      this.navCtrl.push(AboutPage);  
-  }
 
-  onClickEdit(){
-    this.navCtrl.push(CadastroPage, { "isEdit":true, "parentPage": this , "usuarioLogado": this.usuarioLogado});
+  onClickNovaConta(){
+    this.navCtrl.push(CadastroPage, { "isEdit":false});
   }
 
   onClickLogout(){
     this.session.remove();
     this.navCtrl.push(LoginPage);
   }
+  
 }

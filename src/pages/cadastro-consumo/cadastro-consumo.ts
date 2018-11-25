@@ -25,6 +25,8 @@ export class CadastroConsumoPage {
   usuarioLogado: Usuario;
   myDate: String;
 
+  tipo: String = "Gestor"
+
   constructor(
     public navCtrl: NavController, 
     public formBuilder: FormBuilder,
@@ -39,25 +41,12 @@ export class CadastroConsumoPage {
     
   refresh(){
   }
-<<<<<<< HEAD
-
-    ngOnInit() {
-      this.session.get()
-        .then(res => {
-          this.usuarioLogado = Object.assign(new Usuario, res);
-        });
-    }
-
-    ionViewWillLeave(){
-    }
-=======
   ngOnInit() {
     this.session.get()
       .then(res => {
         this.usuarioLogado = Object.assign(new Usuario, res);
       });
   }
->>>>>>> 1f7fb361e69fa7d0c481cce777d95b12d2e600b2
 
   ionViewDidLoad() {
     this.titulo = "Cadastro de Consumo";

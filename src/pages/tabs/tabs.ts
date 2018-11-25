@@ -15,13 +15,10 @@ export class TabsPage {
 
   usuarioLogado: Usuario;
 
-  tipo: String = "Gestor"
-
   ngOnInit() {
     this.session.get()
       .then(res => {
         this.usuarioLogado = Object.assign(new Usuario, res);
-        this.tipo = this.usuarioLogado.tipo;
       });
   }
 

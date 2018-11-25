@@ -6,4 +6,7 @@ export class Usuario{
     sexo: string;
     cpf: number;
     tipo: String;
+    qtdpessoas: number;
+    permanencia: number;
+    meta: number;
 }
