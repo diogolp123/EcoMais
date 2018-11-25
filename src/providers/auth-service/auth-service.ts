@@ -7,6 +7,7 @@ import { Credenciais } from '../../models/login';
 import { AccessToken } from '../../models/token';
 import { Usuario } from '../../models/usuario';
 import { API_ENDPOINT } from './../../utils/constants';
+import { JsonReturn } from '../../models/jsonReturn';
 
 
 /*
@@ -34,7 +35,7 @@ export class AuthServiceProvider {
       return this.http.post<JsonAccessToken>(API_ENDPOINT+"/users/auth/sign_in", parametros, options);
   }
 
-  autentication(credentials: Credenciais, acess_token: AccessToken): Observable<Usuario>{
+  autentication(credentials: Credenciais, acess_token: AccessToken): Observable<JsonReturn>{
     var headers = new HttpHeaders();
 
     headers = headers.set('Authorization', 'bearer ' + acess_token.access_token);
@@ -43,7 +44,7 @@ export class AuthServiceProvider {
     
     let url = API_ENDPOINT+"api/usuario/" + acess_token.uid;
 
-      return this.http.get<Usuario>(url, options);
+      return this.http.get<JsonReturn>(url, options);
   }
 
 }

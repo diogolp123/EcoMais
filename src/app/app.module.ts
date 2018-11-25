@@ -30,6 +30,7 @@ import { ChatSparkPage } from './../pages/chat-spark/chat-spark';
 import { ConfigPage } from './../pages/config/config';
 import { TabsPage } from './../pages/tabs/tabs';
 import { MyApp } from './app.component';
+import { ConsumoServiceProvider } from '../providers/consumo-service/consumo-service';
 
 //import { Keyboard } from '@ionic-native/keyboard';
 
@@ -96,7 +97,8 @@ import { MyApp } from './app.component';
     //Keyboard,
     EletrodomesticoServiceProvider,
     SessionProvider,
-    SingUpServiceProvider
+    SingUpServiceProvider,
+    ConsumoServiceProvider
   ]
 })
 export class AppModule {}
