@@ -23,9 +23,9 @@ import { AccessToken } from '../../models/token';
 
 export class CadastroConsumoPage {
 
-  titulo : string;
-  btnTexto : string;
-  cadastroConsumoForm : FormGroup;
+  titulo: string;
+  btnTexto: string;
+  cadastroConsumoForm: FormGroup;
   usuarioLogado: Usuario;
   token: AccessToken;
   ano_mes: String;
@@ -33,18 +33,18 @@ export class CadastroConsumoPage {
   tipo: String = "Gestor"
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public formBuilder: FormBuilder,
-    public navParams: NavParams, 
+    public navParams: NavParams,
     public session: SessionProvider,
-    public loadingCtrl : LoadingController,
+    public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     public consumoServiceProvider: ConsumoServiceProvider
-    ) {
-      this.ano_mes = "2018-06";
-    }
+  ) {
+    this.ano_mes = "2018-06";
+  }
 
-  refresh(){
+  refresh() {
   }
 
   ngOnInit() {
@@ -54,7 +54,7 @@ export class CadastroConsumoPage {
         this.cadastroConsumoForm.controls['nome'].setValue(this.usuarioLogado.nome);
       });
 
-      this.session.getToken()
+    this.session.getToken()
       .then(res => {
         this.token = Object.assign(new AccessToken, res);
       });
@@ -81,7 +81,23 @@ export class CadastroConsumoPage {
     loading.present();
 
     this.consumoServiceProvider.CadastrarConsumo(c).subscribe((response: JsonReturn) => {
-      loading.dismiss
-    });
+      loading.dismiss();
+      let alert = this.alertCtrl.create({
+        title: 'Consumo',
+        subTitle: "O custo calculado do consumo foi de R$" + response.data.valor,
+        buttons: ['OK']
+      });
+      alert.present();
+
+    },
+      err => {
+        loading.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Erro',
+          subTitle: "Falha na comunicação com o servidor...",
+          buttons: ['OK']
+        });
+        alert.present();
+      });
   }
 }

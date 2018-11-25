@@ -41,7 +41,6 @@ export class LoginPage {
   ) {}
 
   ionViewDidLoad() {
-    //On init
     this.loginForm = this.formBuilder.group({
       username: this.formBuilder.control("", [Validators.required]),
       password: this.formBuilder.control("", [Validators.required]),
@@ -50,9 +49,7 @@ export class LoginPage {
   }
 
   onClickEntrar(){
-    //Chama o provider que autentica o usuário
     let c = Object.assign(new Credenciais, this.loginForm.value);
-    //let c = JSON.stringify(this.loginForm.value);
     console.log(c);
 
     let loading = this.loadingCtrl.create({
