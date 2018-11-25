@@ -48,7 +48,9 @@ export class CadastroPage {
         telefone : this.formBuilder.control("", [Validators.required]),
         nascimento : this.formBuilder.control("", [Validators.required]),
         sexo : this.formBuilder.control("", [Validators.required]),
-        tipo : this.formBuilder.control("", [Validators.required])
+        tipo : this.formBuilder.control("", [Validators.required]),
+        qtdpessoas : this.formBuilder.control("", [Validators.required]),
+        permanencia : this.formBuilder.control("", [Validators.required])
       })
     }
     else{
@@ -64,7 +66,9 @@ export class CadastroPage {
         telefone : this.formBuilder.control("", [Validators.required]),
         nascimento : this.formBuilder.control("", [Validators.required]),
         sexo : this.formBuilder.control("", [Validators.required]),
-        tipo : this.formBuilder.control("", [Validators.required])
+        tipo : this.formBuilder.control("", [Validators.required]),
+        qtdpessoas : this.formBuilder.control("", [Validators.required]),
+        permanencia : this.formBuilder.control("", [Validators.required])
       })
 
     }     
@@ -73,7 +77,7 @@ export class CadastroPage {
   onClickCadastro(){
 
     let loading = this.loadingCtrl.create({
-      content: 'Calma...'
+      content: 'Aguarde...'
     });
     loading.present();
 

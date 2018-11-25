@@ -34,7 +34,7 @@ export class ListaEletrodomesticosPage {
 
   refresh(){
     let loading = this.loadingCtrl.create({
-      content: 'Calma...'
+      content: 'Aguarde...'
     });
     loading.present();
 
