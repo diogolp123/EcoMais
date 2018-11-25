@@ -29,6 +29,10 @@ export class SessionProvider {
       return this.storage.get('usuario');
   }
 
+  getToken(): Promise<any> {
+    return this.storage.get('access_token');
+}
+
   // Quando deslogar deve remova do storage
   remove() {
       this.storage.remove('usuario');

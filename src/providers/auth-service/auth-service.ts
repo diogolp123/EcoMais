@@ -3,11 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { JsonAccessToken } from '../../models/jsonAcessToken';
+import { JsonReturn } from '../../models/jsonReturn';
 import { Credenciais } from '../../models/login';
 import { AccessToken } from '../../models/token';
-import { Usuario } from '../../models/usuario';
 import { API_ENDPOINT } from './../../utils/constants';
-import { JsonReturn } from '../../models/jsonReturn';
 
 
 /*
@@ -32,17 +31,17 @@ export class AuthServiceProvider {
 
     let parametros = "username="+credentials.username+"&password="+credentials.password+"&grant_type="+credentials.grant_type;
 
-      return this.http.post<JsonAccessToken>(API_ENDPOINT+"/users/auth/sign_in", parametros, options);
+      return this.http.post<JsonAccessToken>(API_ENDPOINT+"users/auth/sign_in", parametros, options);
   }
 
-  autentication(credentials: Credenciais, acess_token: AccessToken): Observable<JsonReturn>{
+  autentication(credentials: Credenciais, access_token: AccessToken): Observable<JsonReturn>{
     var headers = new HttpHeaders();
 
-    headers = headers.set('Authorization', 'bearer ' + acess_token.access_token);
+    headers = headers.set('Authorization', 'bearer ' + access_token.access_token);
 
     let options = { headers: headers };
     
-    let url = API_ENDPOINT+"api/usuario/" + acess_token.uid;
+    let url = API_ENDPOINT+"api/usuario/" + access_token.uid;
 
       return this.http.get<JsonReturn>(url, options);
   }

@@ -59,16 +59,16 @@ export class LoginPage {
       content: 'Entrando...'
     });
     loading.present();
-
       this.authServiceProvider.authorize(c).subscribe((response: JsonAccessToken) => {
           let token = Object.assign(new AccessToken, response);
           this.session.token(token);
           this.authServiceProvider.autentication(c, token).subscribe((response: JsonReturn) => {
-              this.session.create(response.data);
+              let usuarioLogado = Object.assign(new Usuario, response.data);
+              this.session.create(usuarioLogado);
               loading.dismiss();
               let alert = this.alertCtrl.create({
                 title: 'Bem Vindo.',
-                subTitle: response.data.nome,
+                subTitle: usuarioLogado.nome,
                 buttons: ['OK']
               }); 
               alert.present();
