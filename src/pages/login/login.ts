@@ -10,6 +10,7 @@ import { Credenciais } from './../../models/login';
 import { AuthServiceProvider } from './../../providers/auth-service/auth-service';
 import { CadastroPage } from './../cadastro/cadastro';
 import { TabsPage } from './../tabs/tabs';
+import { JsonReturn } from '../../models/jsonReturn';
 
 /**
  * Generated class for the LoginPage page.
@@ -62,12 +63,12 @@ export class LoginPage {
       this.authServiceProvider.authorize(c).subscribe((response: JsonAccessToken) => {
           let token = Object.assign(new AccessToken, response);
           this.session.token(token);
-          this.authServiceProvider.autentication(c, token).subscribe((response: Usuario) => {
-              this.session.create(response);
+          this.authServiceProvider.autentication(c, token).subscribe((response: JsonReturn) => {
+              this.session.create(response.data);
               loading.dismiss();
               let alert = this.alertCtrl.create({
                 title: 'Bem Vindo.',
-                subTitle: response.nome,
+                subTitle: response.data.nome,
                 buttons: ['OK']
               }); 
               alert.present();

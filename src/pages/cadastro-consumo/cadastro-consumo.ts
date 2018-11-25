@@ -39,20 +39,14 @@ export class CadastroConsumoPage {
     
   refresh(){
   }
-
-    ngOnInit() {
-      this.session.get()
-        .then(res => {
-          this.usuarioLogado = Object.assign(new Usuario, res);
-        });
-    }
-
-    ionViewWillLeave(){
-      this.navParams.get("parentPage").refresh();
-    }
+  ngOnInit() {
+    this.session.get()
+      .then(res => {
+        this.usuarioLogado = Object.assign(new Usuario, res);
+      });
+  }
 
   ionViewDidLoad() {
-    console.log("teste");
     this.titulo = "Cadastro de Consumo";
     this.btnTexto = "Cadastrar";
     this.cadastroConsumoForm = this.formBuilder.group({
@@ -61,4 +55,6 @@ export class CadastroConsumoPage {
       myDate: this.formBuilder.control("", [Validators.required])
     });
   }
+
+  
 }
