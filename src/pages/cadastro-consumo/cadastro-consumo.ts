@@ -48,7 +48,6 @@ export class CadastroConsumoPage {
     }
 
     ionViewWillLeave(){
-      this.navParams.get("parentPage").refresh();
     }
 
   ionViewDidLoad() {
