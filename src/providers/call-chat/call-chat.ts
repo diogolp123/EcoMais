@@ -1,13 +1,12 @@
-import { Injectable, ErrorHandler } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { AlertController } from 'ionic-angular';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { errorHandler } from '@angular/platform-browser/src/browser';
-
-import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+
+import { Injectable } from '@angular/core';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
+import { AlertController } from 'ionic-angular';
+import { Observable } from 'rxjs/Rx';
 
 //import { SaveDataProvider } from './../save-data/save-data';
 

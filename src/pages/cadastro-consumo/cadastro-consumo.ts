@@ -32,7 +32,13 @@ export class CadastroConsumoPage {
     public session: SessionProvider,
     public loadingCtrl : LoadingController,
     public alertCtrl: AlertController
-    ) {}
+    ) {
+      this.myDate = "2018-06";
+    }
+
+    
+  refresh(){
+  }
 
     ngOnInit() {
       this.session.get()

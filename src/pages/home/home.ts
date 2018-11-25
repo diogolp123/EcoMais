@@ -111,7 +111,6 @@ export class HomePage {
     this.refresh();
 }
   ionViewDidLoad() {
-
     this.session.get()
       .then(res => {
         this.usuarioLogado = Object.assign(new Usuario, res);
