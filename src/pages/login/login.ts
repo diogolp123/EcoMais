@@ -69,7 +69,7 @@ export class LoginPage {
                 title: 'Bem Vindo.',
                 subTitle: response.nome,
                 buttons: ['OK']
-              });
+              }); 
               alert.present();
               this.navCtrl.setRoot(TabsPage);
               this.navCtrl.push(TabsPage);

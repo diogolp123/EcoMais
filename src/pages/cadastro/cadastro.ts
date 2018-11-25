@@ -1,10 +1,10 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { JsonReturn } from './../../models/jsonReturn';
+import { Usuario } from './../../models/usuario';
 import { SessionProvider } from './../../providers/session/session';
 import { SingUpServiceProvider } from './../../providers/sing-up-service/sing-up-service';
-import { Usuario } from './../../models/usuario';
-import { JsonReturn } from './../../models/jsonReturn';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validator, Validators} from "@angular/forms";
 
 /**
  * Generated class for the CadastroPage page.

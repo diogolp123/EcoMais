@@ -33,25 +33,9 @@ export class ListaEletrodomesticosPage {
   ) { }
 
   refresh(){
-    let loading = this.loadingCtrl.create({
-      content: 'Calma...'
-    });
-    loading.present();
-
-    this.eletrodomesticoService.getEletrodomesticoByUsuario(this.usuarioLogado).subscribe((object : JsonReturn)=>{
-      this.listaEletrodomesticos = object.data;
-      loading.dismiss();
-    });
   }
 
   ionViewDidLoad() {
-    
-    console.log('ionViewDidLoad ListaEletrodomesticosPage');
-    this.session.get()
-      .then(res => {
-        this.usuarioLogado = Object.assign(new Usuario, res);
-        this.refresh();
-    });    
   }
 
   onClickAdd(){
